@@ -1,0 +1,85 @@
+<!--<ul class="ads">-->
+    <!--<li ng-repeat="ad in ads.ads" class="box">-->
+        <!--<h1>{{ad.title}}</h1>-->
+        <!--<div><strong>Date:</strong> {{ad.date | date:'dd-MMM-yyyy'}}</div>-->
+        <!--<div ng-if='ad.imageDataUrl'>-->
+            <!--<strong>Image:</strong>-->
+            <!--<img class="ad-image" ng-src="{{ad.imageDataUrl}}" />-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<strong>Text:</strong>-->
+            <!--<span>{{ad.text}}</span>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<strong>Email:</strong>-->
+            <!--<span>{{ad.ownerEmail}}</span>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<strong>Phone:</strong>-->
+            <!--<span>{{ad.ownerPhone}}</span>-->
+        <!--</div>-->
+    <!--</li>-->
+<!--</ul>-->
+
+<div class="jumbotron" ng-cloak>
+    <ul>
+        <li ng-repeat="ad in ads.ads">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{ad.title}}
+                        <span class="pull-right">
+                            {{ad.date | date: "d-MMM-yyyy"}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img onerror="this.src='images/No_image_available.png'" ng-src="{{ad.imageDataUrl}}" class="_NotfullHD"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="textContainer">
+                                {{ad.text}}
+                            </div>
+                            <div class="row" id="nameWrapper">
+                                <div class="col-md-3">
+                                    <label>Name </label>
+                                </div>
+                                <div class="col-md-8" id="nameContainer">
+                                    {{ad.ownerName}}
+                                </div>
+                            </div>
+                            <div class="row" id="emailWrapper">
+                                <div class="col-md-3">
+                                    <label>Email </label>
+                                </div>
+                                <div class="col-md-8" id="emailContainer">
+                                    <a href="#">{{ad.ownerEmail}}</a>
+                                </div>
+                            </div>
+                            <div class="row" id="phoneWrapper">
+                                <div class="col-md-3">
+                                    <label>Tel. </label>
+                                </div>
+                                <div class="col-md-8" id="phoneContainer">
+                                    {{ad.ownerPhone}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div ng-if="ads.ads.length==0" class="box no-data">
+    No ads found.
+</div>
+
+<pagination total-items="ads.numItems" ng-model="adsParams.startPage"
+            items-per-page="adsParams.pageSize" ng-change="reloadAds()"
+            max-size="9" boundary-links="true">
+</pagination>
+
