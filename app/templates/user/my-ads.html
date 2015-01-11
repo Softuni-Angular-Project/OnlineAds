@@ -1,0 +1,55 @@
+<div class="jumbotron" ng-cloak>
+    <ul>
+        <li ng-repeat="ad in myAds.ads">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{ad.title}}
+                        <span class="pull-right">
+                            {{ad.date | date: "d-MMM-yyyy"}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img onerror="this.src='images/No_image_available.png'" ng-src="{{ad.imageDataUrl}}" class="_NotfullHD"/>
+                        </div>
+                        <div class="col-md-5">
+                            <div id="textContainer">
+                                {{ad.text}}
+                            </div>
+                            <div class="row" id="nameWrapper">
+                                <div class="col-md-3">
+                                    <label>Town </label>
+                                </div>
+                                <div class="col-md-8" id="nameContainer">
+                                    {{ ad.townName }}
+                                </div>
+                            </div>
+                            <div class="row" id="emailWrapper">
+                                <div class="col-md-3">
+                                    <label>Category </label>
+                                </div>
+                                <div class="col-md-8" id="emailContainer">
+                                    {{ad.categoryName}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div><label>Status </label></div>
+                            <button class="btn btn-primary" disabled>{{ad.status}}</button>
+                            <br/>
+                            <br/>
+                            <button class="btn btn-primary">Deactivate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div ng-if="ads.ads.length==0" class="box no-data">
+    No ads found.
+</div>
